@@ -129,6 +129,19 @@ trends_histori = lexo_trends("trends_histori.csv")
 trends_letersi = lexo_trends("trends_letersi.csv")
 
 # =====================================================
+# TË DHËNAT NGA ML
+# =====================================================
+@st.cache_data
+def lexo_ml(skedari):
+    if os.path.exists(skedari):
+        return pd.read_csv(skedari)
+    return None
+
+ml_krahasimi = lexo_ml("ml_krahasimi.csv")
+ml_parashikimet = lexo_ml("ml_parashikimet_2026.csv")
+ml_vizuale = lexo_ml("ml_parashikimet_vizuale.csv")
+
+# =====================================================
 # MENU NË ANËN E MAJTË
 # =====================================================
 st.sidebar.header("Filtra")
@@ -313,11 +326,125 @@ if trends_letersi is not None and kategoria in ["Të gjitha", "Letërsi"]:
     st.plotly_chart(fig_letersi, use_container_width=True)
 
 # =====================================================
+# SEKSIONI 7: Parashikimi me Machine Learning
+# =====================================================
+if ml_vizuale is not None:
+    st.markdown('<div class="section-title">7. Parashikimi me Machine Learning (ARIMA)</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-description">Parashikimi i vizitave për vitin 2026 duke përdorur modelin ARIMA (AutoRegressive Integrated Moving Average). Vija e vazhdueshme tregon të dhënat historike, vija e ndërprerë tregon parashikimin.</div>', unsafe_allow_html=True)
+
+    # Filtro sipas kategorisë
+    if kategoria == "Histori":
+        ml_filtruar = ml_vizuale[ml_vizuale["eventi"].isin(histori)]
+    elif kategoria == "Art":
+        ml_filtruar = ml_vizuale[ml_vizuale["eventi"].isin(art)]
+    elif kategoria == "Letërsi":
+        ml_filtruar = ml_vizuale[ml_vizuale["eventi"].isin(letersi)]
+    else:
+        ml_filtruar = ml_vizuale
+
+    # Marrim vetëm 5 entitetet kryesore për të mos e mbushur grafikun
+    entitetet_top = ml_parashikimet.head(5)["eventi"].tolist() if ml_parashikimet is not None else ml_filtruar["eventi"].unique()[:5]
+    ml_top = ml_filtruar[ml_filtruar["eventi"].isin(entitetet_top)]
+
+    # Krijojmë grafikun me dy vija për secilin entitet
+    fig_ml = go.Figure()
+
+    for eventi in entitetet_top:
+        df_eventi = ml_top[ml_top["eventi"] == eventi].sort_values("data")
+        df_eventi["data"] = pd.to_datetime(df_eventi["data"])
+
+        # Historiku
+        df_hist = df_eventi[df_eventi["tipi"] == "Historik"]
+        emri_shqip = emrat_shqip.get(eventi, eventi)
+
+        fig_ml.add_trace(go.Scatter(
+            x=df_hist["data"], y=df_hist["vizita"],
+            mode="lines", name=f"{emri_shqip} (Historik)",
+            line=dict(width=2)
+        ))
+
+        # Parashikimi
+        df_par = df_eventi[df_eventi["tipi"] == "Parashikim 2026"]
+        if len(df_par) > 0:
+            fig_ml.add_trace(go.Scatter(
+                x=df_par["data"], y=df_par["vizita"],
+                mode="lines", name=f"{emri_shqip} (2026)",
+                line=dict(width=2, dash="dash")
+            ))
+
+    fig_ml.update_layout(
+        height=600,
+        title="Parashikimi i Vizitave për 2026 (ARIMA) - Top 5 Entitetet",
+        xaxis_title="Data",
+        yaxis_title="Vizita Mujore",
+        template="plotly_dark" if st.get_option("theme.base") == "dark" else "plotly_white",
+        font=dict(family="Arial", size=12),
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
+        legend=dict(orientation="v", yanchor="top", y=1, xanchor="left", x=1.02)
+    )
+    st.plotly_chart(fig_ml, use_container_width=True)
+
+    # Tabela e parashikimeve
+    st.markdown('<div class="section-description" style="margin-top: 30px;"><b>Tabela e parashikimeve për 2026:</b> Krahasimi i totalit të vizitave në 2025 me parashikimin për 2026.</div>', unsafe_allow_html=True)
+
+    if ml_parashikimet is not None:
+        # Filtro sipas kategorisë
+        if kategoria == "Histori":
+            ml_p_filtruar = ml_parashikimet[ml_parashikimet["eventi"].isin(histori)]
+        elif kategoria == "Art":
+            ml_p_filtruar = ml_parashikimet[ml_parashikimet["eventi"].isin(art)]
+        elif kategoria == "Letërsi":
+            ml_p_filtruar = ml_parashikimet[ml_parashikimet["eventi"].isin(letersi)]
+        else:
+            ml_p_filtruar = ml_parashikimet
+
+        ml_p_shfaqur = ml_p_filtruar.copy()
+        ml_p_shfaqur["Entiteti"] = ml_p_shfaqur["eventi"].map(emrat_shqip).fillna(ml_p_shfaqur["eventi"])
+        ml_p_shfaqur = ml_p_shfaqur[["Entiteti", "Total_2025", "Parashikimi_2026", "Ndryshimi_%"]]
+        ml_p_shfaqur.columns = ["Entiteti", "Totali 2025", "Parashikimi 2026", "Ndryshimi (%)"]
+
+        st.dataframe(ml_p_shfaqur, use_container_width=True, hide_index=True)
+
+# =====================================================
+# SEKSIONI 8: Krahasimi i Modeleve
+# =====================================================
+if ml_krahasimi is not None:
+    st.markdown('<div class="section-title">8. Krahasimi i Modeleve: ARIMA vs Linear Regression</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-description">Krahasimi i saktësisë së dy modeleve të parashikimit duke përdorur MAE (Mean Absolute Error). Modeli me MAE më të ulët është më i saktë.</div>', unsafe_allow_html=True)
+
+    # Filtro sipas kategorisë
+    if kategoria == "Histori":
+        ml_k_filtruar = ml_krahasimi[ml_krahasimi["eventi"].isin(histori)]
+    elif kategoria == "Art":
+        ml_k_filtruar = ml_krahasimi[ml_krahasimi["eventi"].isin(art)]
+    elif kategoria == "Letërsi":
+        ml_k_filtruar = ml_krahasimi[ml_krahasimi["eventi"].isin(letersi)]
+    else:
+        ml_k_filtruar = ml_krahasimi
+
+    ml_k_shfaqur = ml_k_filtruar.copy()
+    ml_k_shfaqur["Entiteti"] = ml_k_shfaqur["eventi"].map(emrat_shqip).fillna(ml_k_shfaqur["eventi"])
+    ml_k_shfaqur = ml_k_shfaqur[["Entiteti", "MAE_ARIMA", "MAE_LR", "Fituesi"]]
+    ml_k_shfaqur.columns = ["Entiteti", "MAE ARIMA", "MAE Linear Regression", "Fituesi"]
+
+    st.dataframe(ml_k_shfaqur, use_container_width=True, hide_index=True)
+
+    # Përmbledhje
+    fituesit = ml_k_filtruar["Fituesi"].value_counts()
+    st.markdown('<div class="section-description" style="margin-top: 20px;"><b>Përmbledhje:</b> Rezultatet e krahasimit për kategorinë e zgjedhur.</div>', unsafe_allow_html=True)
+
+    cols = st.columns(len(fituesit))
+    for i, (fituesi, nr) in enumerate(fituesit.items()):
+        with cols[i]:
+            st.metric(fituesi, f"{nr} entitete")
+
+# =====================================================
 # Footer
 # =====================================================
 st.markdown(
     '<div class="footer">'
-    'Burimi i të dhënave: Wikipedia Pageviews API & Google Trends'
+    'Burimi i të dhënave: Wikipedia Pageviews API, Google Trends & Machine Learning (ARIMA)'
     '</div>',
     unsafe_allow_html=True
 )
