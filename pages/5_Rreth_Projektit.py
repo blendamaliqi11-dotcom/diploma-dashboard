@@ -66,7 +66,16 @@ with col3:
 # =====================================================
 st.markdown('<div class="section-title">Arkitektura e Sistemit</div>', unsafe_allow_html=True)
 
+st.markdown("""
+Sistemi është ndërtuar në **tre shtresa kryesore**:
 
+1. **Mbledhja e të Dhënave** — Përmes API-ve të Wikipedia-s dhe Google Trends
+2. **Përpunimi dhe Ruajtja** — Në një bazë të dhënash SQLite
+3. **Analiza dhe Prezantimi** — Analiza SQL, Machine Learning, dhe Dashboard interaktiv
+
+Studimi u zhvillua në pesë faza: mbledhja e të dhënave, organizimi në bazë të dhënash, 
+analiza përshkruese, analiza inferenciale dhe parashikimi me modele të mësimit të makinerisë.
+""")
 
 # Shfaqim diagramin e arkitekturës (i zvogëluar dhe i centruar)
 col_l, col_m, col_r = st.columns([1, 2, 1])
@@ -82,21 +91,6 @@ with col_m:
         st.warning("Diagrami i arkitekturës nuk u gjet në dosjen kryesore.")
 
 # =====================================================
-# METODOLOGJIA
-# =====================================================
-st.markdown('<div class="section-title">Metodologjia</div>', unsafe_allow_html=True)
-
-st.markdown("""
-Studimi u zhvillua në **pesë faza**:
-
-1. **Mbledhja** e të dhënave përmes API-ve dhe burimeve publike
-2. **Organizimi** në një bazë të dhënash të centralizuar
-3. **Analiza përshkruese** — mesatarja, mediana, devijimi standard
-4. **Analiza inferenciale** — korrelacione dhe teste statistikore
-5. **Parashikimi** me modele të mësimit të makinerisë
-""")
-
-# =====================================================
 # KUFIZIMET E STUDIMIT
 # =====================================================
 st.markdown('<div class="section-title">Kufizimet e Studimit</div>', unsafe_allow_html=True)
@@ -108,7 +102,5 @@ st.markdown("""
 - **Mbulimi gjeografik** i kufizuar për vende me popullsi të vogël
 - **Goodreads** tregon vlerësimet, jo aktin e leximit
 """)
-
-
 
 shfaq_footer()
