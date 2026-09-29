@@ -34,7 +34,9 @@ Ky projekt është zhvilluar si pjesë e një **punimi diplome në Shkenca Kompj
 
 ## Arkitektura e Sistemit
 
-<img src="https://raw.githubusercontent.com/blendamaliqi11-dotcom/diploma-dashboard/main/arkitektura.dark.png" alt="Arkitektura e Sistemit" width="400">
+<p align="center">
+  <img src="https://raw.githubusercontent.com/blendamaliqi11-dotcom/diploma-dashboard/main/arkitektura.dark.png" alt="Arkitektura e Sistemit" width="400">
+</p>
 
 
 ## Teknologjitë e Përdorura
