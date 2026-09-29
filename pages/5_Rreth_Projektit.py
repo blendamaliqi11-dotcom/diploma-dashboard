@@ -77,16 +77,15 @@ Sistemi është ndërtuar në **tre shtresa kryesore**:
 # =====================================================
 # ZBULIMI I TEMËS DHE SHFAQJA E DIAGRAMIT
 # =====================================================
-# Zbulojmë temën aktive të Streamlit
 tema = st.get_option("theme.base") or "light"
 
-# Zgjedhim imazhin sipas temës
+# Zgjedhim imazhin sipas temës (skedarët në GitHub kanë pikë, jo nënvizë)
 if tema == "dark":
-    imazhi = "arkitektura_dark.png"
-    imazhi_fallback = "arkitektura.dark.png"
+    imazhi = "arkitektura.dark.png"
+    imazhi_fallback = "arkitektura_dark.png"
 else:
-    imazhi = "arkitektura_light.png"
-    imazhi_fallback = "arkitektura.dark.png"
+    imazhi = "arkitektura.light.png"
+    imazhi_fallback = "arkitektura_light.png"
 
 # Shfaqim diagramin e arkitekturës (i zvogëluar dhe i centruar)
 col_l, col_m, col_r = st.columns([1, 2, 1])
@@ -96,10 +95,14 @@ with col_m:
         st.image(imazhi, use_container_width=True)
     elif os.path.exists(imazhi_fallback):
         st.image(imazhi_fallback, use_container_width=True)
-    elif os.path.exists("arkitektura_dark.png"):
-        st.image("arkitektura_dark.png", use_container_width=True)
     elif os.path.exists("arkitektura.dark.png"):
         st.image("arkitektura.dark.png", use_container_width=True)
+    elif os.path.exists("arkitektura.light.png"):
+        st.image("arkitektura.light.png", use_container_width=True)
+    elif os.path.exists("arkitektura_dark.png"):
+        st.image("arkitektura_dark.png", use_container_width=True)
+    elif os.path.exists("arkitektura_light.png"):
+        st.image("arkitektura_light.png", use_container_width=True)
     else:
         st.warning("Diagrami i arkitekturës nuk u gjet në dosjen kryesore.")
 
