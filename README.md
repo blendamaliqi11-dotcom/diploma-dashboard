@@ -34,7 +34,7 @@ Ky projekt është zhvilluar si pjesë e një **punimi diplome në Shkenca Kompj
 
 ## Arkitektura e Sistemit
 
-![Arkitektura e Sistemit]("https://github.com/blendamaliqi11-dotcom/diploma-dashboard/blob/main/arkitektura.dark.png?raw=true" alt="Arkitektura e Sistemit" width="700")
+<img src="https://raw.githubusercontent.com/blendamaliqi11-dotcom/diploma-dashboard/main/arkitektura_dark.png" alt="Arkitektura e Sistemit" width="700">
 
 Sistemi është ndërtuar në **tre shtresa kryesore**:
 
