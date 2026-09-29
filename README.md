@@ -31,6 +31,21 @@ Ky projekt është zhvilluar si pjesë e një **punimi diplome në Shkenca Kompj
 - **Sistem Feedback** — Mbledhje automatike e vlerësimeve në Google Sheets
 
 ---
+## Arkitektura e Sistemit
+
+![Arkitektura e Sistemit](arkitektura_dark.png)
+
+Sistemi është ndërtuar në **tre shtresa kryesore**:
+
+1. **Mbledhja e të Dhënave** — Përmes API-ve të Wikipedia-s dhe Google Trends
+2. **Përpunimi dhe Ruajtja** — Në një bazë të dhënash SQLite
+3. **Analiza dhe Prezantimi** — Analiza SQL, Machine Learning, dhe Dashboard interaktiv
+
+**Rrjedha e të dhënave:**
+Burimet (API) → Mbledhja (Python) → Ruajtja (SQLite) → Analizat (SQL/ML/Rrjeti) → Dashboard (Streamlit)
+
+---
+
 
 ## Struktura e Projektit
 
