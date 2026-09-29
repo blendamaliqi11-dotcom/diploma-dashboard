@@ -95,6 +95,15 @@ Ky projekt është zhvilluar si pjesë e një **punimi diplome në Shkenca Kompj
 - **Korrelacione, jo kauzalitet** — nuk mund të provohen marrëdhënie shkakësore
 - Mbulimi gjeografik i kufizuar për vende me popullsi të vogël
 - Të dhënat gjeografike janë deduktuar nga gjuha e lexuesve
+---
+
+## Testimi
+
+Projekti përfshin **15 unit tests** me pytest për të verifikuar funksionet kryesore:
+
+    pytest test_utils.py -v
+
+Të gjitha testet kaluan me sukses.
 
 ---
 
