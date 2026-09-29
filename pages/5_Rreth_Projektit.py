@@ -72,9 +72,6 @@ Sistemi është ndërtuar në **tre shtresa kryesore**:
 1. **Mbledhja e të Dhënave** — Përmes API-ve të Wikipedia-s dhe Google Trends
 2. **Përpunimi dhe Ruajtja** — Në një bazë të dhënash SQLite
 3. **Analiza dhe Prezantimi** — Analiza SQL, Machine Learning, dhe Dashboard interaktiv
-
-Studimi u zhvillua në pesë faza: mbledhja e të dhënave, organizimi në bazë të dhënash, 
-analiza përshkruese, analiza inferenciale dhe parashikimi me modele të mësimit të makinerisë.
 """)
 
 # Shfaqim diagramin e arkitekturës (i zvogëluar dhe i centruar)
@@ -89,6 +86,16 @@ with col_m:
         st.image("arkitektura_light.png", use_container_width=True)
     else:
         st.warning("Diagrami i arkitekturës nuk u gjet në dosjen kryesore.")
+
+# =====================================================
+# METODOLOGJIA (E SHKURTUAR)
+# =====================================================
+st.markdown('<div class="section-title">Metodologjia</div>', unsafe_allow_html=True)
+
+st.markdown("""
+Studimi u zhvillua në **pesë faza**: mbledhja e të dhënave, organizimi në bazë të dhënash, 
+analiza përshkruese, analiza inferenciale dhe parashikimi me modele të mësimit të makinerisë.
+""")
 
 # =====================================================
 # KUFIZIMET E STUDIMIT
