@@ -109,16 +109,6 @@ st.markdown("""
 - **Goodreads** tregon vlerësimet, jo aktin e leximit
 """)
 
-# =====================================================
-# KONTRIBUTI
-# =====================================================
-st.markdown('<div class="section-title">Kontributi i Pritur</div>', unsafe_allow_html=True)
 
-st.markdown("""
-- Metodologji e **përsëritshme** për analizën e interesit kulturor
-- Një **mjet interaktiv** për studiues dhe institucione kulturore
-- Testim i **modeleve parashikuese** për seri kohore kulturore
-- Theksim i **kontekstit gjuhësor** në interpretimin e të dhënave globale
-""")
 
 shfaq_footer()
