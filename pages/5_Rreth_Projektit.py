@@ -1,4 +1,5 @@
 import streamlit as st
+import os
 from utils import aplikon_stilizim, shfaq_footer, shfaq_titull
 
 st.set_page_config(
@@ -59,6 +60,29 @@ with col3:
     - 7 vepra klasike
     - Numri i lexuesve
     """)
+
+# =====================================================
+# ARKITEKTURA E SISTEMIT
+# =====================================================
+st.markdown('<div class="section-title">Arkitektura e Sistemit</div>', unsafe_allow_html=True)
+
+st.markdown("""
+Sistemi është ndërtuar në **tre shtresa kryesore**:
+
+1. **Mbledhja e të Dhënave** — Përmes API-ve të Wikipedia-s dhe Google Trends
+2. **Përpunimi dhe Ruajtja** — Në një bazë të dhënash SQLite
+3. **Analiza dhe Prezantimi** — Analiza SQL, Machine Learning, dhe Dashboard interaktiv
+""")
+
+# Shfaqim diagramin e arkitekturës
+if os.path.exists("arkitektura.dark.png"):
+    st.image("arkitektura.dark.png", use_container_width=True)
+elif os.path.exists("arkitektura_dark.png"):
+    st.image("arkitektura_dark.png", use_container_width=True)
+elif os.path.exists("arkitektura_light.png"):
+    st.image("arkitektura_light.png", use_container_width=True)
+else:
+    st.warning("Diagrami i arkitekturës nuk u gjet në dosjen kryesore.")
 
 # =====================================================
 # METODOLOGJIA
