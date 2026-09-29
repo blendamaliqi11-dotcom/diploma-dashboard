@@ -12,7 +12,7 @@ st.set_page_config(
 aplikon_stilizim()
 
 shfaq_titull(
-    "Google Trends Analytics",
+    "Analitika e Google Trends",
     "Krahasimi i kërkimeve në Google për tema kulturore (2015-2025)"
 )
 
