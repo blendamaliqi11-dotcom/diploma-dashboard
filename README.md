@@ -45,33 +45,6 @@ Sistemi është ndërtuar në **tre shtresa kryesore**:
 **Rrjedha e të dhënave:**
 Burimet (API) → Mbledhja (Python) → Ruajtja (SQLite) → Analizat (SQL/ML/Rrjeti) → Dashboard (Streamlit)
 
----
-
-## Struktura e Projektit
-
-    diploma-dashboard/
-    ├── dashboard.py
-    ├── utils.py
-    ├── requirements.txt
-    ├── diploma.db
-    ├── pages/
-    │   ├── 1_Wikipedia.py
-    │   ├── 2_Google_Trends.py
-    │   ├── 3_Machine_Learning.py
-    │   ├── 4_Harta.py
-    │   ├── 5_Rreth_Projektit.py
-    │   └── 6_Feedback.py
-    ├── vizitat_wikipedia.csv
-    ├── vizitat_gjuhet.csv
-    ├── trends_art.csv
-    ├── trends_histori.csv
-    ├── trends_letersi.csv
-    ├── ml_parashikimet_2026.csv
-    ├── ml_tuning_optimal.csv
-    ├── ml_cross_validation.csv
-    └── ml_diebold_mariano.csv
-
----
 
 ## Teknologjitë e Përdorura
 
@@ -104,17 +77,6 @@ Burimet (API) → Mbledhja (Python) → Ruajtja (SQLite) → Analizat (SQL/ML/Rr
 
 ---
 
-## Metodologjia
-
-Studimi u zhvillua në **pesë faza**:
-
-1. **Mbledhja e të dhënave** — përmes API-ve dhe burimeve publike
-2. **Organizimi** — në një bazë të dhënash SQLite
-3. **Analiza përshkruese** — mesatarja, mediana, devijimi standard
-4. **Analiza inferenciale** — korrelacione dhe teste statistikore
-5. **Parashikimi** — modele ARIMA me hyperparameter tuning dhe cross-validation
-
----
 
 ## Instalimi
 
@@ -161,13 +123,5 @@ Ky projekt është krijuar për qëllime akademike. Të gjitha të dhënat janë
 
 ---
 
-## Falënderime
-
-- **Wikipedia** për API-n e hapur të Pageviews
-- **Google Trends** për të dhënat e kërkimeve
-- **Streamlit** për platformën e dashboard-it
-- **Natural Earth** për të dhënat gjeografike
-
----
 
 ⭐ Nëse ju pëlqeu ky projekt, mos harroni t'i jepni një yll në GitHub!
