@@ -64,7 +64,7 @@ with col3:
 # =====================================================
 # ARKITEKTURA E SISTEMIT
 # =====================================================
-st.markdown('<div class="section-title">Arkitektura e Sistemit</div>', unsafe_allow_html=True)
+
 
 
 
