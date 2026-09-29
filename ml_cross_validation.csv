@@ -1,0 +1,19 @@
+eventi,order,MAE_cv_mesatare,MAE_cv_devijimi,numri_folds
+2008_Kosovo_declaration_of_independence,"(0, 1, 2)",1801.14,489.79,5
+Arthur_Rimbaud,"(1, 0, 0)",2796.23,771.05,5
+Berlin_Wall,"(0, 1, 2)",55578.29,41051.63,5
+Franz_Kafka,"(0, 1, 1)",32773.26,23820.41,5
+Guernica_(Picasso),"(0, 1, 2)",17506.65,5187.59,5
+Jane_Austen,"(2, 1, 0)",45883.87,22566.14,5
+Kosovo_War,"(0, 1, 2)",16616.5,8450.18,5
+Leonardo_da_Vinci,"(2, 1, 2)",52023.85,13497.02,5
+Mark_Twain,"(1, 1, 1)",21735.58,8961.03,5
+Mona_Lisa,"(1, 1, 1)",46078.71,26835.19,5
+Pride_and_Prejudice,"(0, 1, 2)",32761.5,7033.23,5
+September_11_attacks,"(1, 1, 2)",265203.07,49345.7,5
+The_Holocaust,"(0, 1, 1)",102282.71,74751.85,5
+The_Metamorphosis,"(2, 1, 0)",15509.98,10181.47,5
+The_Persistence_of_Memory,"(2, 1, 2)",6976.47,2138.27,5
+The_Starry_Night,"(1, 1, 1)",24996.13,12404.78,5
+Vincent_van_Gogh,"(1, 1, 1)",52046.21,21755.87,5
+World_War_II,"(0, 1, 0)",577166.46,809777.26,5

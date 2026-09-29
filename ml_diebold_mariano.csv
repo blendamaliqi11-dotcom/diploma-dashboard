@@ -1,0 +1,19 @@
+eventi,ARIMA_order,DM_stat,p_value,Fituesi_DM
+2008_Kosovo_declaration_of_independence,"(0, 1, 2)",3.19,0.0014,Modeli 2 (Linear Regression)
+Arthur_Rimbaud,"(1, 0, 0)",1.04,0.2983,Pa dallim sinjifikant
+Berlin_Wall,"(0, 1, 2)",0.043,0.9661,Pa dallim sinjifikant
+Franz_Kafka,"(0, 1, 1)",-2.166,0.0303,Modeli 1 (ARIMA)
+Guernica_(Picasso),"(0, 1, 2)",-1.46,0.1443,Pa dallim sinjifikant
+Jane_Austen,"(2, 1, 0)",2.571,0.0101,Modeli 2 (Linear Regression)
+Kosovo_War,"(0, 1, 2)",-4.694,0.0,Modeli 1 (ARIMA)
+Leonardo_da_Vinci,"(2, 1, 2)",2.856,0.0043,Modeli 2 (Linear Regression)
+Mark_Twain,"(1, 1, 1)",-3.367,0.0008,Modeli 1 (ARIMA)
+Mona_Lisa,"(1, 1, 1)",1.847,0.0647,Pa dallim sinjifikant
+Pride_and_Prejudice,"(0, 1, 2)",0.362,0.7174,Pa dallim sinjifikant
+September_11_attacks,"(1, 1, 2)",-0.611,0.5411,Pa dallim sinjifikant
+The_Holocaust,"(0, 1, 1)",-2.328,0.0199,Modeli 1 (ARIMA)
+The_Metamorphosis,"(2, 1, 0)",-0.163,0.8702,Pa dallim sinjifikant
+The_Persistence_of_Memory,"(2, 1, 2)",-1.953,0.0508,Pa dallim sinjifikant
+The_Starry_Night,"(1, 1, 1)",-0.24,0.8102,Pa dallim sinjifikant
+Vincent_van_Gogh,"(1, 1, 1)",-9.074,0.0,Modeli 1 (ARIMA)
+World_War_II,"(0, 1, 0)",-10.203,0.0,Modeli 1 (ARIMA)

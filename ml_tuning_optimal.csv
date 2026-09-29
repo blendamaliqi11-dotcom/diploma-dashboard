@@ -1,0 +1,19 @@
+eventi,order,AIC,BIC
+2008_Kosovo_declaration_of_independence,"(0, 1, 2)",2272.0,2280.48
+Arthur_Rimbaud,"(1, 0, 0)",2387.99,2396.5
+Berlin_Wall,"(0, 1, 2)",3185.31,3193.8
+Franz_Kafka,"(0, 1, 1)",2968.35,2974.0
+Guernica_(Picasso),"(0, 1, 2)",2885.57,2894.05
+Jane_Austen,"(2, 1, 0)",3092.62,3101.1
+Kosovo_War,"(0, 1, 2)",2846.01,2854.49
+Leonardo_da_Vinci,"(2, 1, 2)",3087.41,3101.55
+Mark_Twain,"(1, 1, 1)",2922.4,2930.88
+Mona_Lisa,"(1, 1, 1)",3034.0,3042.48
+Pride_and_Prejudice,"(0, 1, 2)",3159.19,3167.68
+September_11_attacks,"(1, 1, 2)",3657.81,3669.12
+The_Holocaust,"(0, 1, 1)",3333.39,3339.04
+The_Metamorphosis,"(2, 1, 0)",2659.95,2668.44
+The_Persistence_of_Memory,"(2, 1, 2)",2602.66,2616.8
+The_Starry_Night,"(1, 1, 1)",2846.61,2855.09
+Vincent_van_Gogh,"(1, 1, 1)",3023.0,3031.49
+World_War_II,"(0, 1, 0)",3499.2,3502.03
