@@ -31,6 +31,7 @@ Ky projekt është zhvilluar si pjesë e një **punimi diplome në Shkenca Kompj
 - **Sistem Feedback** — Mbledhje automatike e vlerësimeve në Google Sheets
 
 ---
+
 ## Arkitektura e Sistemit
 
 ![Arkitektura e Sistemit](arkitektura_dark.png)
@@ -45,7 +46,6 @@ Sistemi është ndërtuar në **tre shtresa kryesore**:
 Burimet (API) → Mbledhja (Python) → Ruajtja (SQLite) → Analizat (SQL/ML/Rrjeti) → Dashboard (Streamlit)
 
 ---
-
 
 ## Struktura e Projektit
 
@@ -151,7 +151,7 @@ Studimi u zhvillua në **pesë faza**:
 Punim diplome — Bachelor në Shkenca Kompjuterike
 2025-2026
 
- [blendamaliqi11@gmail.com](mailto:blendamaliqi11@gmail.com)
+📧 [blendamaliqi11@gmail.com](mailto:blendamaliqi11@gmail.com)
 
 ---
 
