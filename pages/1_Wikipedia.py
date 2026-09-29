@@ -13,7 +13,7 @@ st.set_page_config(
 aplikon_stilizim()
 
 shfaq_titull(
-    "Wikipedia Analytics",
+    "Analitika e Wikipedia-s",
     "Analiza e vizitave në artikujt e Wikipedia-s për 18 entitete kulturore (2015-2025)"
 )
 
