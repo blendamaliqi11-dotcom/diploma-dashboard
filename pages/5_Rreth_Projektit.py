@@ -66,13 +66,7 @@ with col3:
 # =====================================================
 st.markdown('<div class="section-title">Arkitektura e Sistemit</div>', unsafe_allow_html=True)
 
-st.markdown("""
-Sistemi është ndërtuar në **tre shtresa kryesore**:
 
-1. **Mbledhja e të Dhënave** — Përmes API-ve të Wikipedia-s dhe Google Trends
-2. **Përpunimi dhe Ruajtja** — Në një bazë të dhënash SQLite
-3. **Analiza dhe Prezantimi** — Analiza SQL, Machine Learning, dhe Dashboard interaktiv
-""")
 
 # Shfaqim diagramin e arkitekturës (i zvogëluar dhe i centruar)
 col_l, col_m, col_r = st.columns([1, 2, 1])
