@@ -48,7 +48,14 @@ with st.form("feedback_form"):
         )
         faqja_preferuar = st.selectbox(
             "Cila faqe ju pëlqeu më shumë?",
-            ["Dashboard", "Wikipedia", "Google Trends", "Machine Learning", "Rreth Projektit"]
+            [
+                "Dashboard",
+                "Wikipedia",
+                "Google Trends",
+                "Machine Learning",
+                "Harta",
+                "Rreth Projektit"
+            ]
         )
     
     sugjerime = st.text_area(
@@ -87,7 +94,7 @@ if dergo:
                             border-left: 3px solid #E5484D; margin-top: 15px;
                             background-color: rgba(128, 128, 128, 0.1);">
                     <b>Vlerësimi juaj është regjistruar.</b><br>
-                    Faleminderit që kontribuat në përmirësimin e këtij projekti.
+                    Faleminderit që kontribuuat në përmirësimin e këtij projekti.
                 </div>
             """, unsafe_allow_html=True)
         else:
