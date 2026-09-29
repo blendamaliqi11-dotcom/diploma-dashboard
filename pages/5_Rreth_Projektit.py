@@ -74,15 +74,18 @@ Sistemi është ndërtuar në **tre shtresa kryesore**:
 3. **Analiza dhe Prezantimi** — Analiza SQL, Machine Learning, dhe Dashboard interaktiv
 """)
 
-# Shfaqim diagramin e arkitekturës
-if os.path.exists("arkitektura.dark.png"):
-    st.image("arkitektura.dark.png", use_container_width=True)
-elif os.path.exists("arkitektura_dark.png"):
-    st.image("arkitektura_dark.png", use_container_width=True)
-elif os.path.exists("arkitektura_light.png"):
-    st.image("arkitektura_light.png", use_container_width=True)
-else:
-    st.warning("Diagrami i arkitekturës nuk u gjet në dosjen kryesore.")
+# Shfaqim diagramin e arkitekturës (i zvogëluar dhe i centruar)
+col_l, col_m, col_r = st.columns([1, 2, 1])
+
+with col_m:
+    if os.path.exists("arkitektura.dark.png"):
+        st.image("arkitektura.dark.png", use_container_width=True)
+    elif os.path.exists("arkitektura_dark.png"):
+        st.image("arkitektura_dark.png", use_container_width=True)
+    elif os.path.exists("arkitektura_light.png"):
+        st.image("arkitektura_light.png", use_container_width=True)
+    else:
+        st.warning("Diagrami i arkitekturës nuk u gjet në dosjen kryesore.")
 
 # =====================================================
 # METODOLOGJIA
