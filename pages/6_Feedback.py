@@ -16,7 +16,7 @@ shfaq_titull(
 )
 
 # URL-ja e Google Apps Script
-GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyEFaz7iz797Wik_ScwyJH_9MFYyDyPl_ZZ9ozAh-NSgAJQy960TdgqH2rRbklCGlDh5A/exec"
+GOOGLE_SCRIPT_URL = st.secrets["GOOGLE_SCRIPT_URL"]
 
 # =====================================================
 # HYRJE
