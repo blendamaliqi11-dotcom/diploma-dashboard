@@ -1,6 +1,9 @@
 import streamlit as st
 import os
-from utils import aplikon_stilizim, shfaq_footer, shfaq_titull
+from utils import (
+    aplikon_stilizim, shfaq_footer, shfaq_titull,
+    merr_fotot, EMRAT_SHQIP, HISTORI, ART, LETERSI
+)
 
 st.set_page_config(
     page_title="Rreth Projektit - Memoria Kolektive Digjitale",
@@ -14,21 +17,75 @@ shfaq_titull(
     "Konteksti, metodologjia dhe burimet e studimit"
 )
 
+
 # =====================================================
-# QËLLIMI I STUDIMIT
+# ENTITETET E STUDIUARA (FOTO)
 # =====================================================
-st.markdown('<div class="section-title">Qëllimi i Studimit</div>', unsafe_allow_html=True)
+st.markdown('<div class="section-title">Entitetet e Studiuara</div>', unsafe_allow_html=True)
+st.markdown(
+    '<div class="section-description">'
+    '</div>',
+    unsafe_allow_html=True
+)
 
-st.markdown("""
-Ky studim analizon **interesin publik për trashëgiminë kulturore** përmes të dhënave 
-digjitale nga platformat online. Pyetja qendrore është:
+# Marrim të gjitha fotot njëherësh (me cache)
+te_gjitha_eventet = HISTORI + ART + LETERSI
 
-> *A ndryshon interesi për historinë, artin dhe letërsinë ndër vite, dhe a mund të 
-> parashikohet ai për të ardhmen?*
+with st.spinner("Duke ngarkuar fotot nga Wikipedia..."):
+    FOTOT = merr_fotot(te_gjitha_eventet)
 
-Studimi integron tre burime të pavarura të dhënash për të krijuar një pamje të plotë 
-të sjelljes kulturore në epokën digjitale.
-""")
+
+def shfaq_kategorine(emri, eventet):
+    """Shfaq një kategori me 6 foto në 2 rreshta x 3 kolona (madhësi uniforme)."""
+    st.markdown(f"### {emri}")
+    
+    # 2 rreshta x 3 kolona = 6 foto
+    for rreshti in range(2):
+        cols = st.columns(3)
+        for i, kolona in enumerate(cols):
+            idx = rreshti * 3 + i
+            if idx >= len(eventet):
+                break
+            
+            eventi = eventet[idx]
+            emri_shqip = EMRAT_SHQIP.get(eventi, eventi)
+            
+            with kolona:
+                if eventi in FOTOT:
+                    # Foto me dimensione fikse + object-fit cover
+                    st.markdown(
+                        f'<div style="width: 100%; height: 160px; overflow: hidden; '
+                        f'border-radius: 8px; background: rgba(128,128,128,0.1);">'
+                        f'<img src="{FOTOT[eventi]}" '
+                        f'style="width: 100%; height: 100%; object-fit: cover; '
+                        f'display: block;" />'
+                        f'</div>',
+                        unsafe_allow_html=True
+                    )
+                else:
+                    # Fallback nëse nuk ka foto
+                    st.markdown(
+                        '<div style="height: 160px; display: flex; align-items: center; '
+                        'justify-content: center; background: rgba(128,128,128,0.1); '
+                        'border-radius: 8px; font-size: 14px; opacity: 0.7;">'
+                        f'{emri_shqip}</div>',
+                        unsafe_allow_html=True
+                    )
+                
+                # Emri poshtë fotos
+                st.markdown(
+                    f'<div style="text-align: center; margin-top: 8px; '
+                    f'font-size: 13px; font-weight: 500;">{emri_shqip}</div>',
+                    unsafe_allow_html=True
+                )
+
+    st.markdown("<br>", unsafe_allow_html=True)
+
+
+# Shfaqim 3 kategoritë
+shfaq_kategorine("Historia", HISTORI)
+shfaq_kategorine("Arti", ART)
+shfaq_kategorine("Letërsia", LETERSI)
 
 # =====================================================
 # BURIMET E TË DHËNAVE
@@ -66,43 +123,15 @@ with col3:
 # =====================================================
 st.markdown('<div class="section-title">Arkitektura e Sistemit</div>', unsafe_allow_html=True)
 
-st.markdown("""
-Sistemi është ndërtuar në **tre shtresa kryesore**:
 
-1. **Mbledhja e të Dhënave** — Përmes API-ve të Wikipedia-s dhe Google Trends
-2. **Përpunimi dhe Ruajtja** — Në një bazë të dhënash SQLite
-3. **Analiza dhe Prezantimi** — Analiza SQL, Machine Learning, dhe Dashboard interaktiv
-""")
 
-# =====================================================
-# ZBULIMI I TEMËS DHE SHFAQJA E DIAGRAMIT
-# =====================================================
-tema = st.get_option("theme.base") or "light"
-
-# Zgjedhim imazhin sipas temës (skedarët në GitHub kanë pikë, jo nënvizë)
-if tema == "dark":
-    imazhi = "arkitektura.dark.png"
-    imazhi_fallback = "arkitektura_dark.png"
-else:
-    imazhi = "arkitektura.light.png"
-    imazhi_fallback = "arkitektura_light.png"
-
-# Shfaqim diagramin e arkitekturës (i zvogëluar dhe i centruar)
 col_l, col_m, col_r = st.columns([1, 2, 1])
 
 with col_m:
-    if os.path.exists(imazhi):
-        st.image(imazhi, use_container_width=True)
-    elif os.path.exists(imazhi_fallback):
-        st.image(imazhi_fallback, use_container_width=True)
+    if os.path.exists("arkitektura.light.png"):
+        st.image("arkitektura.light.png", use_container_width=True)
     elif os.path.exists("arkitektura.dark.png"):
         st.image("arkitektura.dark.png", use_container_width=True)
-    elif os.path.exists("arkitektura.light.png"):
-        st.image("arkitektura.light.png", use_container_width=True)
-    elif os.path.exists("arkitektura_dark.png"):
-        st.image("arkitektura_dark.png", use_container_width=True)
-    elif os.path.exists("arkitektura_light.png"):
-        st.image("arkitektura_light.png", use_container_width=True)
     else:
         st.warning("Diagrami i arkitekturës nuk u gjet në dosjen kryesore.")
 
