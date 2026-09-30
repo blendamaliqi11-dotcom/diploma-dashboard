@@ -78,7 +78,7 @@ def aplikon_stilizim():
 
 
 # ============================================================
-# FJALORI I EMRave NË SHQIP
+# FJALORI I EMRAVE NË SHQIP
 # ============================================================
 
 EMRAT_SHQIP = {
@@ -189,3 +189,101 @@ def shfaq_titull(kryesori, nentitulli):
     """Shfaq titullin dhe nëntitullin e një faqeje."""
     st.title(kryesori)
     st.markdown(f'<div class="subtitle">{nentitulli}</div>', unsafe_allow_html=True)
+
+
+# ============================================================
+# MARRJA E FOTOVE NGA WIKIPEDIA
+# ============================================================
+
+@st.cache_data(ttl=86400)
+def merr_fotot(eventet):
+    """Merr fotot kryesore të artikujve nga Wikipedia API (me 2 metoda)."""
+    import requests
+    from urllib.parse import quote
+    
+    fotot = {}
+    headers = {"User-Agent": "BachelorThesis/1.0 (student@example.com)"}
+    
+    for eventi in eventet:
+        # Enkodojmë titullin (për kllapat dhe hapësirat)
+        titulli_enkoduar = quote(eventi.replace("_", " "), safe="")
+        
+        # === METODA 1: pageimages (më e shpejta) ===
+        try:
+            url = (
+                f"https://en.wikipedia.org/w/api.php"
+                f"?action=query&titles={titulli_enkoduar}"
+                f"&prop=pageimages&format=json&pithumbsize=400"
+                f"&pilicense=any"
+            )
+            response = requests.get(url, headers=headers, timeout=10)
+            
+            if response.status_code == 200:
+                data = response.json()
+                pages = data["query"]["pages"]
+                
+                for page_id in pages:
+                    if "thumbnail" in pages[page_id]:
+                        fotot[eventi] = pages[page_id]["thumbnail"]["source"]
+                        break
+        except Exception:
+            pass
+        
+        # === METODA 2: nëse metoda 1 dështon, marrim imazhin e parë të artikullit ===
+        if eventi not in fotot:
+            try:
+                url = (
+                    f"https://en.wikipedia.org/w/api.php"
+                    f"?action=query&titles={titulli_enkoduar}"
+                    f"&prop=images&format=json&imlimit=10"
+                )
+                response = requests.get(url, headers=headers, timeout=10)
+                
+                if response.status_code == 200:
+                    data = response.json()
+                    pages = data["query"]["pages"]
+                    
+                    for page_id in pages:
+                        if "images" in pages[page_id]:
+                            for img in pages[page_id]["images"]:
+                                titulli_img = img["title"]
+                                # Filtrojmë vetëm imazhet reale (jo ikona, jo SVG)
+                                if (titulli_img.lower().endswith((".jpg", ".jpeg", ".png"))
+                                    and "icon" not in titulli_img.lower()
+                                    and "logo" not in titulli_img.lower()
+                                    and "commons" not in titulli_img.lower()):
+                                    
+                                    # Marrim URL-në e imazhit
+                                    titulli_img_enkoduar = quote(
+                                        titulli_img.replace("File:", "").replace(" ", "_"),
+                                        safe=""
+                                    )
+                                    url_img = (
+                                        f"https://en.wikipedia.org/w/api.php"
+                                        f"?action=query&titles=File:{titulli_img_enkoduar}"
+                                        f"&prop=imageinfo&iiprop=url&iiurlwidth=400&format=json"
+                                    )
+                                    resp_img = requests.get(url_img, headers=headers, timeout=10)
+                                    
+                                    if resp_img.status_code == 200:
+                                        data_img = resp_img.json()
+                                        pages_img = data_img["query"]["pages"]
+                                        
+                                        for pid in pages_img:
+                                            if "imageinfo" in pages_img[pid]:
+                                                info = pages_img[pid]["imageinfo"][0]
+                                                if "thumburl" in info:
+                                                    fotot[eventi] = info["thumburl"]
+                                                elif "url" in info:
+                                                    fotot[eventi] = info["url"]
+                                                break
+                                    
+                                    if eventi in fotot:
+                                        break
+                        
+                        if eventi in fotot:
+                            break
+            except Exception:
+                pass
+    
+    return fotot
